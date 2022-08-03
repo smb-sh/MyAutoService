@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MyAutoService.Models;
 
 namespace MyAutoService.Data
 {
@@ -9,5 +10,7 @@ namespace MyAutoService.Data
             : base(options)
         {
         }
+
+        public DbSet<ServiceType> serviceTypes { get; set; }
     }
 }
