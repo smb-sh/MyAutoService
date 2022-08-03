@@ -3,5 +3,41 @@
 @{
 }
 
-<h1>مدیریت اتو سرویس</h1>
+<h1>مدیریت خدمات اتو سرویس</h1>
 <hr />
+<div class="border" style="background-color: white">
+
+    <div class="row p-3">
+         <div class="col-md-6">
+             <div class="text-info">
+                 <h2>لیست سرویس های ما</h2>
+                 
+                 </div>
+        </div>
+        
+        <div class="col-md-6 text-right">
+            <a asp-page="Create" class="btn btn-info">
+                افزودن سرویس جدید
+            <i class="fa-solid fa-plus"></i>    
+            </a>
+            
+        </div>
+
+
+    </div>
+
+
+</div>
+<br />
+<div>
+
+    @if (Model.ServiceTypes.Count == 0)
+    {
+     <div class="alert alert-warning">
+         سرویسی جهت نمایش تعریف نشده است. میتوانید از طریق 
+         <a asp-page="Create" class="btn btn-link">افزودن سرویس جدید</a>
+         سرویس جدید ایجاد کنید
+     </div>   
+    }
+
+</div>
