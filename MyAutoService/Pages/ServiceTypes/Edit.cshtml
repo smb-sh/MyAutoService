@@ -1,13 +1,17 @@
 ﻿@page
-@model MyAutoService.Pages.ServiceTypes.CreateModel
+@model MyAutoService.Pages.ServiceTypes.EditModel
+
 @{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-<br/>
+
 <h2 class="text-info">
-    افزودن سرویس جدید
+   ویرایش سرویس @Model.ServiceType.Name
 </h2>
 <hr/>
 <form method="post">
+    <input type="hidden" asp-for="ServiceType.Id" />
     <div class="border p-3">
         <div class="form-group row">
             <div class="col-2 text-right">
@@ -32,7 +36,7 @@
         <div class="col-5 offset-2">
             <div class="row">
                 <div class="col-6">
-                    <input type="submit" class="btn btn-info form-control" value="ثبت"/>
+                    <input type="submit" class="btn btn-info form-control" value="ویرایش"/>
                 </div>
                 <div class="col-6">
                     <a asp-page="Index" class="btn btn-outline-success form-control">بازگشت به لیست</a>

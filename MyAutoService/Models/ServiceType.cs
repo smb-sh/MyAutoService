@@ -6,11 +6,13 @@ namespace MyAutoService.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Display(Name ="نام سرویس")]
+        [Required(ErrorMessage = "لطفا نام را وارد کنید")]
         [MaxLength(500)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        [Required]
+        [Display(Name = "قیمت سرویس")]
+        [Required(ErrorMessage = "لطفا قیمت را به درستی وارد کنید")]
         public double Price {get; set; }
 
 

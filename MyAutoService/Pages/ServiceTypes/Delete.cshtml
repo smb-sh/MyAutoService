@@ -1,0 +1,39 @@
+﻿@page
+@using MyAutoService.Utilities
+@model MyAutoService.Pages.ServiceTypes.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>آیا از حذف این مورد اطمینان دارید؟</h3>
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ServiceType.Name)
+            
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ServiceType.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ServiceType.Price)
+            
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.ServiceType.Price)*@
+            @Model.ServiceType.Price.ToToman()
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="ServiceType.Id" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> |
+        <a asp-page="./Index">بازگشت به صفحه قبل</a>
+    </form>
+</div>

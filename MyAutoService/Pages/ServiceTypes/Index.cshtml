@@ -1,4 +1,5 @@
 ﻿@page
+@using MyAutoService.Utilities
 @model MyAutoService.Pages.ServiceTypes.IndexModel
 @{
 }
@@ -29,15 +30,49 @@
 
 </div>
 <br />
-<div>
 
+<div>
     @if (Model.ServiceTypes.Count == 0)
     {
-     <div class="alert alert-warning">
-         سرویسی جهت نمایش تعریف نشده است. میتوانید از طریق 
-         <a asp-page="Create" class="btn btn-link">افزودن سرویس جدید</a>
-         سرویس جدید ایجاد کنید
-     </div>   
+        <div class="alert alert-warning">سرویسی جهت نمایش تعریف نشده است ، میتوانید از طریق 
+            <a asp-page="Create" class="btn btn-link">
+                افزودن سرویس جدید
+               
+            </a>
+            سرویس جدید ایجاد کنید</div>
     }
-
+    else
+    {
+        <table class="table table-striped border">
+            <tr class="table-secondary">
+                <th>عنوان سرویس</th>
+                <th>قیمت سرویس</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.ServiceTypes)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Price.ToToman()
+                    </td>
+                    <td style="width: 200px">
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-outline-primary" asp-page="Edit" asp-route-Id="@item.Id">
+                                <i class="fas fa-edit fa-sm"></i>
+                            </a>
+                            <a class="btn btn-outline-success" asp-page="Details" asp-route-Id="@item.Id">
+                                <i class="fas fa-list-alt fa-sm"></i>
+                            </a>
+                            <a class="btn btn-outline-danger" asp-page="Delete" asp-route-Id="@item.Id">
+                                <i class="fas fa-trash fa-sm" ></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
 </div>
