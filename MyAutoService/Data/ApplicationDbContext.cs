@@ -12,5 +12,6 @@ namespace MyAutoService.Data
         }
 
         public DbSet<ServiceType> serviceTypes { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

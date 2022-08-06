@@ -74,29 +74,48 @@ namespace MyAutoService.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
+            [Required(ErrorMessage ="ایمیل خود را وارد کنید")]
+            [EmailAddress(ErrorMessage ="ایمیل شما نامعتبر میباشد")]
+            [Display(Name = "ایمیل")]
             public string Email { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage ="کلمه عبور خود را وارد کنید")]
+            [StringLength(100, ErrorMessage = "{0} باید حداقل {2} کاراکتر و حداکثر {1} کاراکتر داشته باشد", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "کلمه عبور")]
             public string Password { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            [Required(ErrorMessage = "تکرار کلمه عبور خود را وارد کنید")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "تکرار کلمه عبور")]
+            [Compare("Password", ErrorMessage = "مغایرت در کلمه عبور و تکرار آن یافت شد!")]
             public string ConfirmPassword { get; set; }
+
+            [Required(ErrorMessage = "نام و نام خانوادگی خود را وارد کنید")]
+            [Display(Name = "نام و نام خانوادگی")]
+            [MaxLength(200)]
+            public string Name { get; set; }
+
+            
+            [Display(Name = "آدرس")]
+            [MaxLength(400)]
+            public string Address { get; set; }
+
+            [Required(ErrorMessage = "{0} خود را وارد کنید")]
+            [Display(Name = "شماره تماس")]
+            [MaxLength(11, ErrorMessage = "نامعتبر")]
+            [MinLength(11, ErrorMessage = "نامعتبر")]
+            [Phone(ErrorMessage ="نامعتبر میباشد")]
+            public string PhoneNumber { get; set; }
+
         }
 
 
