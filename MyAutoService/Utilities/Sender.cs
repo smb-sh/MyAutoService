@@ -12,9 +12,8 @@ namespace MyAutoService.Utilities
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("mail.gmail.ir");
-            SmtpClient SmtpServer = new SmtpClient("mail.gmail.ir");
-            mail.From = new MailAddress("test@email.ir");
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+            mail.From = new MailAddress("testtitoplearn@gmail.com");
             mail.To.Add(email);
             mail.Subject = subject;
             mail.Body = htmlMessage;
