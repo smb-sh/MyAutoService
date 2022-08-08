@@ -18,7 +18,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using MyAutoService.Data;
 using MyAutoService.Models;
+using MyAutoService.Utilities;
 
 namespace MyAutoService.Areas.Identity.Pages.Account
 {
@@ -29,8 +31,9 @@ namespace MyAutoService.Areas.Identity.Pages.Account
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly IUserPhoneNumberStore<IdentityUser> _phoneStor;
-        private readonly IUserStore<ApplicationUser> _nameStor;
-        private readonly IUserStore<ApplicationUser> _addressStor;
+        // add for role manager in this project
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext _db;
         
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
@@ -40,7 +43,10 @@ namespace MyAutoService.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager,
+            ApplicationDbContext db
+            )
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -48,6 +54,8 @@ namespace MyAutoService.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
+            _db = db;
         }
 
         /// <summary>
@@ -156,6 +164,17 @@ namespace MyAutoService.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+
+                    if (!await _roleManager.RoleExistsAsync(SD.AdminEndUser))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.AdminEndUser));
+                    }
+                    if (!await _roleManager.RoleExistsAsync(SD.CustomerEndUser))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.CustomerEndUser));
+                    }
+
+                    await _userManager.AddToRoleAsync(user, SD.AdminEndUser);
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
