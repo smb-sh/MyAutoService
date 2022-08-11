@@ -18,7 +18,35 @@
     </div>
     <div class="border">
         <br />
+
         <div>
+            <div class="border">
+                <div style="height: 60px" class="container border border-secondary">
+                    <div class="row">
+                        <div class="col-11">
+                            <div class="row" style="padding-top: 10px">
+                                <div class="col-4">
+                                    <input type="text" name="searchName" placeholder="نام" class="form-control" />
+                                </div>
+                                <div class="col-4">
+                                    <input type="email" name="searchEmail" placeholder="ایمیل" class="form-control"/>
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" name="searchPhone" placeholder="تلفن" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="row" style="padding-top: 10px; padding-left: 15px">
+                                <button type="submit" name="submit" class="btn btn-info form-control">
+                                    بیاب
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
             @if (Model.UsersListViewModel.ApplicationUserList.Count > 0)
             {
                 <table class="table table-striped border">

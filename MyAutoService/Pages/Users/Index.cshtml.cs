@@ -24,7 +24,7 @@ namespace MyAutoService.Pages.Users
 
         [BindProperty]
         public UsersListViewModel UsersListViewModel { get; set; }
-        public async Task<IActionResult> OnGet(int pageId = 1)
+        public async Task<IActionResult> OnGet(int pageId = 1, string searchName = null, string searchEmail = null, string searchPhone = null)
         {
             UsersListViewModel = new UsersListViewModel()
             {
@@ -33,6 +33,25 @@ namespace MyAutoService.Pages.Users
             };
             StringBuilder param = new StringBuilder();
             param.Append("/Users?pageId=:");
+
+            param.Append("&searchName=");
+            if (searchName != null)
+                param.Append(searchName);
+
+            param.Append("&searchEmail=");
+            if (searchEmail != null)
+                param.Append(searchEmail);
+
+            param.Append("&searchPhone=");
+            if (searchPhone != null)
+                param.Append(searchPhone);
+
+            if (searchName != null || searchEmail != null || searchPhone != null)
+            {
+                UsersListViewModel.ApplicationUserList = _db.ApplicationUsers
+                    .Where(u => u.Name.Contains(searchName) || u.Email.Contains(searchEmail) || u.PhoneNumber.Contains(searchPhone)).ToList();
+            }
+
             var count = UsersListViewModel.ApplicationUserList.Count;
             UsersListViewModel.PagingInfo = new PagingInfo()
             {
