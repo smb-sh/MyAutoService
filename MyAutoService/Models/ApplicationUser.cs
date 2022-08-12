@@ -7,16 +7,16 @@ namespace MyAutoService.Models
     {
         [Display(Name ="نام مشتری")]
         [MaxLength(200)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [MaxLength(400)]
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
-        [Display(Name = "ایمیل")]
+        /*[Display(Name = "ایمیل")]
         public override string Email {
             get { return base.Email; }
             set { base.Email = value; }
-        }
+        }*/
         
         [Display(Name = "شماره تلفن")]
         public override string PhoneNumber {
