@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,9 +12,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyAutoService.Data;
 using MyAutoService.Models;
+using MyAutoService.Utilities;
 
 namespace MyAutoService.Pages.Users
 {
+    [Authorize(Roles = SD.AdminEndUser)]
     public class EditModel : PageModel
     {
         private ApplicationDbContext _db;

@@ -2,9 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyAutoService.Models;
 using MyAutoService.Data;
+using Microsoft.AspNetCore.Authorization;
+using MyAutoService.Utilities;
+using System.Data;
 
 namespace MyAutoService.Pages.ServiceTypes
 {
+    [Authorize(Roles = SD.AdminEndUser)]
     public class CreateModel : PageModel
     {
         private ApplicationDbContext _db;
