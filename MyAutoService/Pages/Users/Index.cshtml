@@ -63,6 +63,7 @@
 
                             @Html.DisplayNameFor(m => m.UsersListViewModel.ApplicationUserList[0].Email)
                         </th>
+                        <th>مدیریت ماشین ها</th>
                         <th></th>
                     </tr>
                     @foreach (var user in Model.UsersListViewModel.ApplicationUserList)
@@ -76,6 +77,12 @@
                             </td>
                             <td>
                                 @user.Email
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-success" asp-page="/Cars/Index" asp-route-userId="@user.Id">
+                                    <i class="fas fa-car fa-sm"></i>
+                                </a>
+                                
                             </td>
                             <td style="width: 200px">
                                 <div class="btn-group" role="group">

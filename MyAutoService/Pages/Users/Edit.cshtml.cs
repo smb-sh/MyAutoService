@@ -42,6 +42,7 @@ namespace MyAutoService.Pages.Users
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
+            if (id ==null) { return NotFound(); }
             if (id.Trim().Length == 0)
                 return NotFound();
 
